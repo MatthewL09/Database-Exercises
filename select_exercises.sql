@@ -7,6 +7,7 @@ SELECT COUNT(DISTINCT artist) FROM albums;
 # 3b. There are 23 unique artists
 DESCRIBE albums;
 # 3c. id is the primary key
+SELECT * FROM albums;
 # 3d. 1967 is the oldest release date
 
 SELECT * FROM albums;
@@ -18,9 +19,9 @@ SELECT * FROM albums WHERE name = "Sgt. Pepper's Lonely Hearts Club Band";
 
 SELECT genre FROM albums WHERE name = 'Nevermind';
 
-SELECT * FROM albums WHERE release_date BETWEEN 1990 AND 2000;
+SELECT * FROM albums WHERE release_date BETWEEN 1990 AND 1999;
 
-SELECT name FROM albums WHERE sales < '20,000,000';
+SELECT name FROM albums WHERE sales < 20;
 
 SELECT * FROM albums WHERE genre = "Rock";
 # Rock is too specific
