@@ -1,23 +1,26 @@
-USE employees;
+# Basic_statement_questions
 
-SHOW TABLES;
-# tables available > current_dept_emp, departments, dept_emp, dept_emp_latest_date, dept_manager, employees, salaries, titles
+USE albums_db;
+SELECT * FROM albums;
+# 3a. There are 31 Rows
+SELECT COUNT(DISTINCT artist) FROM albums;
+# 3b. There are 23 unique artists
+DESCRIBE albums;
+# 3c. id is the primary key
+# 3d. 1967 is the oldest release date
 
-DESCRIBE employees;
-# data types available are integers, string, date (all types)
-# numeric type > employee number, 
-# string > first_name, last_name, gender
-# date type > hire_date, birth_date
+SELECT * FROM albums;
 
-# RELATION between employees and department number is the primary key 
 
-SHOW CREATE TABLE employees;
-#CREATE TABLE `employees` (
-  `emp_no` int NOT NULL,
-  `birth_date` date NOT NULL,
-  `first_name` varchar(14) NOT NULL,
-  `last_name` varchar(16) NOT NULL,
-  `gender` enum('M','F') NOT NULL,
-  `hire_date` date NOT NULL,
-  PRIMARY KEY (`emp_no`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
+SELECT name FROM albums WHERE artist = 'Pink FLoyd';
+
+SELECT * FROM albums WHERE name = 'Sgt. Pepper\'s Lonely Hearts Club Band';
+
+SELECT genre FROM albums WHERE name = 'Nevermind';
+
+SELECT * FROM albums WHERE release_date BETWEEN 1990 AND 2000;
+
+SELECT name FROM albums WHERE sales < '20,000,000';
+
+SELECT * FROM albums WHERE genre = "Rock";
+# Rock is too specific
