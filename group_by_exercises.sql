@@ -17,28 +17,27 @@ SELECT last_name, COUNT(*) FROM employees WHERE last_name LIKE '%q%' and last_na
 
 -- 6. 189, 190, 168
 
-SELECT first_name, gender, COUNT(*) FROM employees WHERE first_name IN ('Irena', 'Maya', 'Vidya') GROUP BY first_name, gender ORDER BY first_name;
+SELECT COUNT(T.USERNAME), SUM(T.NUM_SHARED) FROM(SELECT first_name, gender, COUNT(*) FROM employees WHERE first_name IN ('Irena', 'Maya', 'Vidya') GROUP BY first_name, gender ORDER BY first_name;
 -- 7 GENDER COUNT INCLUDED
 
 SELECT LOWER(CONCAT(SUBSTR(first_name, 1,1), SUBSTR(last_name, 1,4), '_', SUBSTR(birth_date,6,2), SUBSTR(birth_date, 3, 2)))  AS username, COUNT(*) AS repeats
 FROM employees 
 GROUP BY username
 HAVING repeats > 1
-ORDER BY repeats DESC;
+ORDER BY repeats DESC;) AS t;
 -- 8. there are 13251  repeat usernamees
 
-SELECT emp_no, salary 
+SELECT emp_no, AVG(salary)
 FROM salaries
-GROUP BY emp_no, salary
-ORDER BY AVG(salary);
--- 9a. HOW to group duplicate employee numbers
+GROUP BY emp_no;
+-- 9a. 
 
 SELECT * FROM salaries LIMIT 2;
 
 SELECT dept_no, COUNT(emp_no) AS employees_in_dept
 FROM dept_emp
-GROUP BY dept_no
-ORDER BY dept_no;
+WHERE to_date > NOW()
+GROUP BY dept_no;
 -- 9b. 9 rows returned
 
 SELECT emp_no, COUNT(salary) AS pay_hist
