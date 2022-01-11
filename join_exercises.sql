@@ -72,3 +72,24 @@ WHERE d.dept_name = 'Marketing' AND s.to_date LIKE '999%'
 ORDER BY s.salary DESC
 LIMIT 1;
 
+
+SELECT e.first_name, e.last_name, s.salary, d.dept_name
+FROM departments d
+JOIN dept_manager dm
+USING (dept_no)
+JOIN salaries s
+USING (emp_no)
+JOIN employees e
+USING (emp_no)
+WHERE d.dept_name LIKE 'Mark%' AND s.to_date LIKE '999%' AND dm.to_date LIKE '999%';
+
+SELECT d.dept_name, AVG(s.salary)
+FROM departments d
+JOIN dept_manager dm
+USING (dept_no)
+JOIN dept_emp de
+USING (dept_no)
+JOIN salaries s
+ON de.to_date = s.to_date
+WHERE s.to_date LIKE '999%'
+GROUP BY d.dept_name;
