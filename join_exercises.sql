@@ -49,8 +49,8 @@ ORDER BY d.dept_name;
 SELECT d.dept_no, d.dept_name, COUNT(*)
 FROM departments d
 JOIN dept_emp de
-ON d.dept_no = de.dept_no
-WHERE de.to_date LIKE '999%'
+USING (dept_no)
+WHERE de.to_date > NOW()
 GROUP BY d.dept_name
 ORDER BY d.dept_no;
 
@@ -88,7 +88,8 @@ JOIN salaries s
 USING (emp_no)
 JOIN employees e
 USING (emp_no)
-WHERE d.dept_name LIKE 'Mark%' AND s.to_date LIKE '999%' AND dm.to_date LIKE '999%';
+WHERE d.dept_name LIKE 'Mark%' AND s.to_date LIKE '999%' AND dm.to_date LIKE '999%'
+LIMIT 1;
 
 
 -- num 10
@@ -113,4 +114,5 @@ USING (dept_no)
 JOIN employees AS managers 
 ON managers.emp_no = dm.emp_no
 WHERE de.to_date LIKE '999%' AND dm.to_date LIKE '999%';
+
 
