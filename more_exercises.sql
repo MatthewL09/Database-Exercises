@@ -158,3 +158,113 @@ FROM film
 WHERE special_features LIKE '%behind%' AND length < 120 AND rental_duration BETWEEN 5 AND 7
 ORDER BY length DESC
 LIMIT 10;
+
+-- JOIN statements
+-- a 
+SELECT a.first_name AS actor_first_name , a.last_name AS actor_last_name, c.first_name AS customer_first_name, c.last_name AS customer_last_name
+FROM customer c
+LEFT JOIN actor a
+ON c.last_name= a.last_name;
+
+-- b
+SELECT c.first_name, c.last_name, a.first_name, a.last_name
+FROM customer c
+RIGHT JOIN actor a
+ON c.last_name = a.last_name;
+
+select * from actor;
+select * from customer;
+
+-- c
+SELECT c.first_name, c.last_name, a.first_name, a.last_name
+FROM customer c
+JOIN actor a
+ON c.last_name = a.last_name;
+
+-- d 
+SELECT c.city_id, c.country_id, co.country_id
+FROM country co
+LEFT JOIN city c
+ON co.country_id = c.country_id;
+
+-- e 
+SELECT f.title, f.description, f.release_year, f.language_id, l.language_id, l.name AS language_name
+FROM film f
+LEFT JOIN language l 
+ON l.language_id = f.language_id;
+
+-- f
+SELECT s.first_name, s.last_name, a.address, a.address2, c.city, a.district 
+FROM staff s
+LEFT JOIN address a
+ON a.address_id = s.address_id
+LEFT JOIN city c
+USING(city_id);
+
+-- MORE_EXERCISES cont
+
+-- 1.
+USE SAKILA;
+
+SELECT LOWER(first_name), LOWER(last_name)
+FROM actor;
+
+
+-- 2
+SELECT actor_id, first_name, last_name
+FROM actor
+WHERE first_name = 'Joe';
+
+-- 3
+SELECT first_name, last_name
+FROM actor
+WHERE last_name LIKE '%gen%';
+
+-- 4 
+SELECT last_name, first_name
+FROM actor
+WHERE last_name LIKE '%li%'
+ORDER BY last_name, first_name;
+
+-- 5
+SELECT country_id, country
+FROM country
+WHERE country IN ('Afghanistan', 'Bangladesh', 'China');
+
+-- 6
+SELECT last_name, COUNT(*)
+FROM actor
+GROUP BY last_name;
+
+-- 7 HAVING STATEMENT USED TO PUT CONDITIONS ON A GROUP BY CLAUSE
+SELECT last_name, COUNT(*)
+FROM actor
+GROUP BY last_name
+HAVING COUNT(*) > 1;
+
+-- 8
+DESCRIBE address;
+
+-- 9
+SELECT first_name, last_name, address
+FROM staff s
+JOIN address a
+USING (address_id);
+
+-- 10
+SELECT SUM(amount), first_name, payment_date
+FROM staff
+JOIN payment
+USING (staff_id)
+JOIN inventory
+USING (store_id)
+WHERE payment_date LIKE ('2005-08%')
+GROUP BY first_name, amount, payment_date
+order BY first_name
+LIMIT 10;
+
+-- 11
+SELECT DISTINCT(title), COUNT(actor_id)
+FROM film
+JOIN film_actor
+USING (film_id);
