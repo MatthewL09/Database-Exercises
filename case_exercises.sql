@@ -1,11 +1,14 @@
 USE employees;
 
+
+-- 1
 SELECT e.emp_no, de.dept_no, e.hire_date, de.to_date,
 IF (de.to_date > NOW(), 1, 0) AS Is_current_employee
 FROM dept_emp de
 JOIN employees e 
 USING (emp_no);
 
+-- 2
 SELECT CONCAT(e.last_name, ' ', e.first_name) AS Employee_name, de.to_date,
 CASE 
 WHEN e.last_name BETWEEN 'A%' and 'H%' THEN 'A-H'
@@ -17,6 +20,7 @@ JOIN dept_emp de
 USING (emp_no)
 ORDER BY alpha_group;
 
+-- 3
 SELECT 
 CASE 
 WHEN birth_date LIKE '195%' then '50\'s'
@@ -28,7 +32,7 @@ GROUP BY birth_decade;
 
 
 USE employees;
-
+-- 4
 SELECT ROUND(AVG(s.salary)),
 CASE
 WHEN dept_no IN ('d008', 'd005') THEN 'R&D'
