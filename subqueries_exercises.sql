@@ -70,4 +70,4 @@ WHERE to_date > NOW() AND salary >=
 	 / (
 		SELECT COUNT(salary)
 		FROM salaries
-		WHERE to_date > NOW ()) * 100;
+		WHERE to_date > NOW()) * 100;
