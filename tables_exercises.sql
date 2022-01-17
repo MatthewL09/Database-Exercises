@@ -1,26 +1,30 @@
-# Basic_statement_questions
 
-USE albums_db;
-SELECT * FROM albums;
-# 3a. There are 31 Rows
-SELECT COUNT(DISTINCT artist) FROM albums;
-# 3b. There are 23 unique artists
-DESCRIBE albums;
-# 3c. id is the primary key
-# 3d. 1967 is the oldest release date
+-- 3
+USE employees;
 
-SELECT * FROM albums;
+-- 4
+SHOW tables;
+-- departments, dept_emp, dept_manager, employees, salaries, titles
 
+-- 5 
+DESCRIBE employees;
+-- int, varchar, date, enum
 
-SELECT name FROM albums WHERE artist = 'Pink FLoyd';
+-- 6 
+-- NUMERIC TYPE
+-- salaries, titles, employees, dept_manager
 
-SELECT * FROM albums WHERE name = 'Sgt. Pepper\'s Lonely Hearts Club Band';
+-- 7 
+-- STRING TYPE
+-- departments, dept_emp, dept_manager, employees, titles
 
-SELECT genre FROM albums WHERE name = 'Nevermind';
+-- 8
+-- DATE TYPE
+-- titles, salaries, employees, dept_manager, dept_emp
 
-SELECT * FROM albums WHERE release_date BETWEEN 1990 AND 2000;
+-- 9
+-- RELATIONSHIP BETWEEN DEPARTMENTS AND EMPLOYEES
+-- No direct relationship
 
-SELECT name FROM albums WHERE sales < '20,000,000';
-
-SELECT * FROM albums WHERE genre = "Rock";
-# Rock is too specific
+-- 10
+DESCRIBE dept_manager;
